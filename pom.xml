@@ -11,12 +11,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.32</version>
 		</dependency>
-		<!-- sqlserver驱动 -->
-		<dependency>
-			<groupId>com.hynnet</groupId>
-			<artifactId>sqljdbc4-chs</artifactId>
-			<version>4.0.2206.100</version>
-		</dependency>
 		<!-- MQ通信 -->
 		<dependency>
 			<groupId>com.rabbitmq</groupId>
