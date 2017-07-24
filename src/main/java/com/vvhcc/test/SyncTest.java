@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.rabbitmq.client.Channel;
+import com.vvhcc.mq.RPC_client;
 import com.vvhcc.utils.ConnectionUtils;
 import com.vvhcc.utils.CreateSqlUtils;
 
@@ -90,13 +92,16 @@ public class SyncTest {
 				e2.printStackTrace();
 			}
 			
-			String string = jsond.toString();
-			System.out.println(string);
+			String jsonstr = jsond.toString();
+			//System.out.println(string);
 			
 			ConnectionUtils.closeResultSet(resultSet);
 			ConnectionUtils.closePreparedStatement(statement);
 			ConnectionUtils.closeConnection(connection);
-
+			//MQ
+			Channel channel = RPC_client.setConnection("mq01.vvcs.com", "vvadmin", "vvcs", "/");
+			String message = RPC_client.sendMessage(channel, "rpc_queue3", jsonstr);
+			System.out.println(message);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
